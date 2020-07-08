@@ -2,3 +2,11 @@
    Site-specific Macros
    ======================== #}
 
+{% set mentions = webmentions | getWebMentionsForUrl(absoluteUrl) %}
+<ol id="webmentions">
+   {% for mention in webmentions %}
+      <li class="webmentions__item">
+         {% include 'webmention.njk' %}
+      </li>
+   {% endfor %}
+</ol>
