@@ -36,6 +36,18 @@
           href="css/global.css"
           media="print"
           onload="this.media='all'">
+
+    <script type="module" src="/js/components/theme-toggle.js" async></script>
+    
+    <script defer async>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator
+            .serviceWorker
+            .register('/service-worker.js');
+        });
+      }
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -49,7 +61,7 @@
         <source
           srcset="https://res.cloudinary.com/danmatthew/image/upload/c_crop,f_auto,dpr_1.0,g_auto,h_1.0,q_auto,w_0.3,x_0/v1593720656/_DSC2105_yxqwvc.jpg,
                   https://res.cloudinary.com/danmatthew/image/upload/c_crop,f_auto,g_auto,h_1.0,q_auto,w_0.3,x_0/v1593720656/_DSC2105_yxqwvc.jpg 2x"
-          media="screen and (orientation: portrait)">
+          media="screen and (orientation: portrait) ">
 
         <img
           class="c-hero"
@@ -72,15 +84,5 @@
     </main>
     {% include "partials/global/site-foot.njk" %}
     {% block foot %}{% endblock %}
-    <script type="module" src="/js/components/theme-toggle.js" async></script>
-    {# <script defer async>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator
-            .serviceWorker
-            .register('/service-worker.js');
-        });
-      }
-    </script> #}
   </body>
 </html>

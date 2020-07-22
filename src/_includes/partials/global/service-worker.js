@@ -1,3 +1,21 @@
+import { registerRoute } from 'workbox-routing';
+import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
+
+registerRoute(
+  ({ request }) =>
+    request.destination === 'style' || request.destination === 'script',
+  new StaleWhileRevalidate({
+    cacheName: 'static-resources',
+  })
+);
+
+registerRoute(
+  ({ request }) => request.destination === 'image',
+  new cacheFirst({
+    cacheName: 'image-cache',
+  })
+);
+
 const CACHE_KEYS = {
   PRE_CACHE: `precache-${VERSION}`,
   RUNTIME: `runtime-${VERSION}`,
